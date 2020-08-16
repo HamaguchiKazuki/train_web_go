@@ -7,8 +7,11 @@ import (
 
 // get a form data when post form
 func process(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	fmt.Fprintln(w, r.FormValue("hello"))
+	r.ParseMultipartForm(1024)
+	fmt.Fprintln(w, "1", r.FormValue("hello"))
+	fmt.Fprintln(w, "2", r.PostFormValue("hello"))
+	fmt.Fprintln(w, "3", r.PostForm)
+	fmt.Fprintln(w, "4", r.MultipartForm)
 	fmt.Fprintln(w, r.Form)
 }
 
